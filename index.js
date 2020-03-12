@@ -70,7 +70,7 @@ server.get('/users/:id', (req, res) => {
 });
 
 
-
+// DELETE
 server.delete('/users/:id', (req, res) => {
     const { id } = req.params;
 
@@ -80,11 +80,11 @@ server.delete('/users/:id', (req, res) => {
                 res.status(204).end();
             } else {
                 res.status(404).json(
-                    { success: false, message: 'id is not found' });
+                    { success: false, message: 'The user with the specified ID does not exist.' });
             }
         })
         .catch(err => {
-            res.status(500).json({ success: false, err });
+            res.status(500).json({ success: false, message: 'The user could not be removed' });
         });
 
 });
