@@ -19,6 +19,9 @@ server.get('/', (req, res) => {
 
 server.post('/users', (req, res) => {
     const userInfo = req.body;
+    const name = req.params.name;
+    const bio = req.params.bio;
+    
     console.log(userInfo);
 
     db.insert(userInfo)
