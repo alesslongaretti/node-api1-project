@@ -19,19 +19,25 @@ server.get('/', (req, res) => {
 
 server.post('/users', (req, res) => {
     const userInfo = req.body;
-    const name = req.params.name;
-    const bio = req.params.bio;
-    
+
+
     console.log(userInfo);
 
     db.insert(userInfo)
-        .then(user => {
-            res.status(201).json({ success: true, user })
+        .then( user => {
+            if(userInfo.name && userInfo.bio) {
+                res.status(201).json({ success: true, user })
+            } else  {
+                res.status(400).json({ success: false, message: 'Please provide name and bio for the user.'})
+            }
+            
         })
         .catch(err => {
-            res.status(400).json({ success: false, err })
+            res.status(500).json({ success: false, err })
         });
 });
+
+
 
 server.get('/users', (req, res) => {
     db.find()
