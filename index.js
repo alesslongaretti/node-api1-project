@@ -64,7 +64,7 @@ server.delete('/users/:id', (req, res) => {
                 res.status(204).end();
             } else {
                 res.status(404).json(
-                    { success: false, message: 'id not found' });
+                    { success: false, message: 'id is not found' });
             }
         })
         .catch(err => {
